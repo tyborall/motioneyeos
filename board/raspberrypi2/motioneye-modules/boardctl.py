@@ -56,7 +56,7 @@ def _get_board_settings():
                 name = name.strip()
                 value = value.strip()
 
-                if name.startswith('gpu_mem'):
+                if name == 'gpu_mem':
                     gpu_mem = int(value)
                 
                 elif name == 'arm_freq':
@@ -115,7 +115,7 @@ def _set_board_settings(s):
             
             seen.add(name)
 
-            if name.startswith('gpu_mem'):
+            if name == 'gpu_mem':
                 lines[i] = '%s=%s' % (name, s['gpuMem'])
 
             elif name == 'arm_freq':
@@ -135,12 +135,6 @@ def _set_board_settings(s):
 
     if 'gpu_mem' not in seen:
         lines.append('gpu_mem=%s' % s['gpuMem'])
-
-    if 'gpu_mem_256' not in seen:
-        lines.append('gpu_mem_256=%s' % s['gpuMem'])
-
-    if 'gpu_mem_512' not in seen:
-        lines.append('gpu_mem_512=%s' % s['gpuMem'])
 
     if 'arm_freq' not in seen:
         lines.append('arm_freq=%s' % arm_freq)
